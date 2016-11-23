@@ -12,7 +12,6 @@
 static const size_t VGA_WIDTH = 80;
 static const size_t VGA_HEIGHT = 25;
 static uint16_t* const VGA_MEMORY = (uint16_t*) 0xB8000;
-
 static size_t terminal_row;
 static size_t terminal_column;
 static uint8_t terminal_color;
@@ -39,7 +38,7 @@ void terminal_putentryat(unsigned char c, uint8_t color, size_t x, size_t y) {
 }
 void terminal_putchar(char c) {
 	unsigned char uc = c;
-	terminal_putentryat(uc, terminal_color, terminal_row, terminal_column);
+	terminal_putentryat(uc, terminal_color, terminal_column, terminal_row);
 	if(++terminal_column == VGA_WIDTH) {
 		terminal_column = 0;
 		if(++terminal_row == VGA_HEIGHT)
